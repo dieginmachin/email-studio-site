@@ -3,194 +3,195 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Email Studio · Install the whole email design process</title>
-<meta name="description" content="Diego Garza's email design process as a Claude Code plugin and Claude skills: brand intake, brand style extraction, Email Layers, Atomic Emails, Template Remix, Figma builds and review. Install it, run it yourself.">
+<title>Email Studio · Install the studio. Run it yourself.</title>
+<meta name="description" content="Diego Garza's email design studio as a Claude Code plugin and Claude skills. Five agents, nine stages, from brand intake to the approved email in Figma. Install it and run it yourself.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="Email Studio">
-<meta property="og:description" content="Install the whole email design process. Run it yourself.">
+<meta property="og:description" content="Install the studio. Run it yourself.">
 <link rel="icon" href="dfy-mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&family=Caveat:wght@500&family=Pixelify+Sans:wght@400;500&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="locked">
+
+<!-- INTRO: loader → pixel scene → zoom into the screen → retro installer with a live feed → opens into the hero -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="ld" id="ld">
+    <div class="ld-in">
+      <div class="ld-track" id="ld-track"><span class="rail"></span><span class="ld-chip" id="ld-chip"></span></div>
+      <div class="ld-bar"><i id="ld-bar"></i></div>
+      <div class="ld-meta"><span>email studio · running</span><span id="ld-n">stage 01 / 09</span></div>
+    </div>
+  </div>
+  <div class="scn" id="scn" hidden>
+    <canvas id="scn-cv"></canvas>
+    <div class="scn-cap" id="scn-cap">Your whole studio fits on one machine.<small>Here's how it installs ↓</small></div>
+  </div>
+  <div class="rt" id="rt" hidden>
+    <div class="rwin" id="rwin">
+      <div class="rbar"><i></i><b>Email Studio Installer · v1.0</b><i></i></div>
+      <div class="rbody">
+        <div class="rpane">
+          <h4><span>Installing</span><span id="rt-pct">0%</span></h4>
+          <div id="rt-steps"></div>
+          <div class="rprog" id="rt-prog"></div>
+        </div>
+        <div class="rpane">
+          <h4><span>Live feed</span><span style="font-size:12px">sample brand, made up</span></h4>
+          <div class="feed"><div class="mini" id="rt-mini"></div><div class="log" id="rt-log"></div></div>
+        </div>
+      </div>
+      <div class="rfoot"><span id="rt-status">Copying 19 skills…</span><span class="rbtn" id="rt-open">Open Email Studio</span></div>
+    </div>
+    <div class="cur" id="rt-cur" style="--c:var(--green)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#14AE5C" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg><b>You</b></div>
+  </div>
+  <button class="skip" id="skip" type="button">Skip intro</button>
+</div>
 
 <header class="nav" id="nav">
-  <div class="w">
-    <a class="brand" href="#top"><img src="dfy-mark.svg" alt="" width="22" height="22">Email Studio</a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#rules">The rules</a><a href="#process">9 stages</a><a href="#demos">See it run</a><a href="#packages">Packages</a><a href="#faq">FAQ</a>
-    </nav>
-    <a class="btn btn-cta" href="https://www.halloftemplates.com/email-studio-workshop">Get Email Studio · $100</a>
-  </div>
+  <a class="brand" href="#top"><span class="bot lead"><i class="eye"></i><i class="eye"></i></span>Email Studio</a>
+  <nav class="nav-links" aria-label="Sections"><a href="#crew">The crew</a><a href="#live">Live</a><a href="#journey">9 stages</a><a href="#rules">Rules</a><a href="#packages">Packages</a></nav>
+  <a class="btn btn-ink" href="#packages">Get the studio</a>
 </header>
 
 <main id="top">
 
 <!-- HERO -->
-<section class="hero w" id="hero">
-  <div class="hero-grid">
-    <div>
-      <p class="eyebrow fade d4">By Diego Garza · Emaily DFY</p>
-      <h1 style="margin-top:18px"><span class="ln"><span>Install</span></span><span class="ln"><span>the <em>studio.</em></span></span><span class="ln"><span>Run it yourself.</span></span></h1>
-      <p class="lede fade d1">The whole email design process we run for client brands, packaged as a Claude Code plugin and Claude skills. From the first brief to the approved email in Figma: brand intake, the brand's style guide, Email Layers, Atomic Emails, Template Remix, the build and the review.</p>
-      <div class="hero-ctas fade d2">
-        <a class="btn btn-cta" href="#packages">See the packages <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="#demos">Watch it run</a>
-      </div>
-      <div class="hero-meta fade d3"><span>9 stages</span><span>19 skills, 5 agents</span><span>A human approves every email</span></div>
-    </div>
-    <div class="fade d2" aria-hidden="true">
-      <div class="stage">
-        <div class="win">
-          <div class="win-bar"><i></i><i></i><i></i><b>Fernhill · Weekend edit · Figma</b></div>
-          <div class="figma">
-            <div class="fg-side" id="hero-layers">
-              <div class="t">Layers</div>
-              <div class="lay">Header / Logo</div>
-              <div class="lay">Hero / Image</div>
-              <div class="lay">Body / Copy</div>
-              <div class="lay">CTA / Button</div>
-              <div class="lay">Products / Grid 2</div>
-              <div class="lay">Footer</div>
-            </div>
-            <div class="fg-canvas">
-              <div class="mail" id="hero-mail">
-                <div class="row"><div class="r-logo">FERNHILL</div></div>
-                <div class="row"><div class="r-hero"><b>The weekend<br>edit</b></div></div>
-                <div class="row"><div class="r-copy"><i></i><i></i><i></i></div></div>
-                <div class="row"><div class="r-cta"><span></span></div></div>
-                <div class="row"><div class="r-grid"><i></i><i></i></div></div>
-                <div class="row"><div class="r-foot"></div></div>
-              </div>
-              <div class="cursor claude" id="hero-cursor"><svg viewBox="0 0 18 18"><path d="M2 1.5l13 6.2-5.6 1.6-2.3 5.4z" fill="#d97757" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg><span class="tag">Claude · maker</span></div>
-              <div class="verdict" id="hero-verdict">Ready · 6 rows, 0 new elements</div>
-            </div>
-          </div>
-        </div>
-        <div class="stage-cap"><span>rebuilding from <b>approved rows only</b></span><span>sample brand, made up</span></div>
-      </div>
-    </div>
+<section class="hero dots" id="hero">
+  <div class="float hide-m" style="left:3%;top:15%"><div class="fcard" style="--rot:-3deg"><div class="t">Welcome #1 · Skincare</div><i style="--h:16px;--bg:#5c1a2b"></i><i style="--h:70px;--bg:#c9a24a"></i><i style="--h:8px;--bg:#eee"></i><i style="--h:8px;width:70%;--bg:#eee"></i><i style="--h:18px;width:60%;margin:auto;--bg:#f9b9cf"></i></div></div>
+  <div class="float hide-m" style="left:6%;top:56%"><div class="fcard" style="--rot:2deg;--d:-2s;width:130px"><div class="t">Winback · Coffee</div><i style="--h:12px;--bg:#2b2b2b"></i><i style="--h:60px;--bg:#d8cbb4"></i><i style="--h:8px;--bg:#eee"></i><i style="--h:16px;width:66%;--bg:#121110"></i><span class="sel" data-n="Hero / Image"></span></div></div>
+  <div class="float hide-m" style="right:4%;top:14%"><div class="fcard" style="--rot:3deg;--d:-4s"><div class="t">Launch · Jewelry</div><i style="--h:84px;--bg:#e8e2d6"></i><i style="--h:10px;--bg:#ddd"></i><i style="--h:10px;width:76%;--bg:#ddd"></i></div></div>
+  <div class="float hide-m" style="right:7%;top:52%"><div class="fcard" style="--rot:-2deg;--d:-1s;width:136px"><div class="t">Promo · Home</div><i style="--h:64px;--bg:#3f5a46"></i><i style="--h:9px;--bg:#eee"></i><i style="--h:18px;--bg:#FF8A3D"></i></div></div>
+  <div class="cur hide-m float" style="left:13%;top:36%;--c:var(--green)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#14AE5C" stroke="#fff" stroke-width="1.2"/></svg><b>You</b></div>
+  <div class="cur hide-m float" style="right:13%;top:44%;--c:var(--orange)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#FF8A3D" stroke="#fff" stroke-width="1.2"/></svg><b>Claude · maker</b></div>
+  <div class="cur hide-m float" style="left:16%;top:47%;--c:var(--purple)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#7B61FF" stroke="#fff" stroke-width="1.2"/></svg><b>Diego</b></div>
+  <div class="note-hand hide-m float" style="right:5%;top:31%">rebuilt, never invented ↘</div>
+  <div class="float hide-m" style="right:17%;top:9%"><span class="bot reviewer" style="--s:.55;--d:-1s"><i class="eye"></i><i class="eye"></i></span></div>
+  <div class="float hide-m" style="left:24%;top:9%"><span class="bot sorter" style="--s:.45;--d:-2s"><i class="eye"></i><i class="eye"></i></span></div>
+
+  <div class="w hero-c">
+    <span class="pill fade"><span class="live"></span>Now installing · the studio behind 2,705 designs this year</span>
+    <h1><span class="l"><span>Install the studio.</span></span><span class="l"><span><em>Run it yourself.</em></span></span></h1>
+    <p class="lede fade f2">Five Claude agents and nine stages that take a brief from your board to an approved email in Figma. They read the brand, remember what the client loved, rebuild from it, and check their own work. You say yes.</p>
+    <div class="ctas fade f3"><a class="btn btn-buy" href="https://www.halloftemplates.com/email-studio-workshop">Get Email Studio · $100 <span class="arr">→</span></a><a class="btn btn-ghost" href="#crew">Meet the crew</a></div>
+    <p class="note fade f4"><b>Claude Code plugin</b> · Claude app skills · a human approves every email</p>
+  </div>
+
+  <div class="art fade f4" id="hero-art">
+    <canvas id="hero-cv"></canvas>
+    <div class="screen" id="hero-screen"><div class="mini" id="hero-mini"></div></div>
+    <div class="scap">The studio, on one machine.<small>installs in about five minutes</small></div>
   </div>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="ticker-in" id="ticker"></div></div>
-
-<!-- RULES BOARD -->
-<section class="sec w board-wrap" id="rules">
-  <div class="sec-head">
-    <p class="eyebrow rv">The rules we work by</p>
-    <h2 class="wsplit">Taste does not scale. <em>Standards do.</em></h2>
-    <p class="lede rv d1">Every skill in the studio is one of these rules, written so a model can follow it the day it joins. Pinned here the way they hang in the studio.</p>
+<!-- CREW -->
+<section class="sec w" id="crew">
+  <div class="head">
+    <span class="tagm rv">The crew</span>
+    <h2 class="ws">Five agents. <em>One of you.</em></h2>
+    <p class="lede rv d1">Each one has a job, a short list of things it may touch, and one thing it never does: decide for you.</p>
   </div>
-  <div class="board" id="board">
-
-    <article class="poster tall" data-speed=".06">
-      <div class="cap"><span>Rule 01</span><span>Build</span></div>
-      <svg class="art" viewBox="0 0 260 200" aria-hidden="true"><g class="lift"><rect x="40" y="30" width="180" height="30" fill="#c4512f"/><rect x="40" y="66" width="180" height="56" fill="#101a15"/><rect x="40" y="128" width="180" height="22" fill="#f5e6a3" stroke="#101a15" stroke-width="2"/></g><g class="spin"><circle cx="212" cy="164" r="26" fill="#f5f0e8" stroke="#101a15" stroke-width="2.5"/><path d="M200 164h24M212 152v24" stroke="#101a15" stroke-width="3"/><path d="M194 146l36 36" stroke="#c4512f" stroke-width="4"/></g></svg>
-      <div><h3>No new elements.</h3><p style="margin-top:12px">Every email is rebuilt from rows the client already approved. Duplicate, reorder, resize, flip, swap copy and photos. Anything new is flagged, never invented.</p></div>
-    </article>
-
-    <article class="poster dark" data-speed="-.04">
-      <div class="cap"><span>Rule 02</span><span>Brand</span></div>
-      <div><h3>Feedback that happens twice is a rule you forgot to write.</h3></div>
-      <svg class="art" viewBox="0 0 260 120" aria-hidden="true"><g class="lift"><path d="M20 20h100v50H58l-18 18V70H20z" fill="#f5e9dc"/><path d="M140 34h100v50h-20v18l-18-18h-62z" fill="#c4512f"/></g><text x="34" y="52" font-family="Figtree" font-weight="700" font-size="14" fill="#4a1d17">Black only.</text><text x="154" y="66" font-family="Figtree" font-weight="700" font-size="14" fill="#f5e9dc">Black only.</text></svg>
-    </article>
-
-    <article class="poster yellow" data-speed=".09">
-      <div class="cap"><span>Rule 03</span><span>Layers</span></div>
-      <svg class="art" viewBox="0 0 260 150" aria-hidden="true"><g class="spin"><rect x="20" y="20" width="220" height="34" rx="4" fill="#fff" stroke="#101a15" stroke-width="2"/><text x="36" y="43" font-family="IBM Plex Mono" font-size="14" fill="#101a15">Group 234</text><path d="M196 28l20 20M216 28l-20 20" stroke="#c4512f" stroke-width="3"/></g><g class="lift"><rect x="20" y="70" width="220" height="30" rx="4" fill="#101a15"/><text x="36" y="90" font-family="IBM Plex Mono" font-size="13" fill="#f5e6a3">Hero / Image</text><rect x="20" y="106" width="220" height="30" rx="4" fill="#101a15"/><text x="36" y="126" font-family="IBM Plex Mono" font-size="13" fill="#f5e6a3">Products / Grid 2</text></g></svg>
-      <div><h3>Agents can't read Group 234.</h3><p style="margin-top:12px">Email Layers gives every row a name and an order, so a model can find it, reuse it and check it.</p></div>
-    </article>
-
-    <article class="poster green" data-speed="-.07">
-      <div class="cap"><span>Rule 04</span><span>Review</span></div>
-      <svg class="art" viewBox="0 0 260 170" aria-hidden="true"><g class="spin"><circle cx="130" cy="85" r="66" fill="none" stroke="#f3fbf6" stroke-width="3" stroke-dasharray="4 7"/><circle cx="130" cy="85" r="52" fill="#f3fbf6"/><text x="130" y="80" text-anchor="middle" font-family="Figtree" font-weight="800" font-size="15" letter-spacing="3" fill="#17904f">APPROVED</text><text x="130" y="100" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#17904f">by a human</text></g></svg>
-      <div><h3>AI drafts. Humans approve.</h3><p style="margin-top:12px">No skill edits a file, a rulebook or a client's Figma without an explicit yes.</p></div>
-    </article>
-
-    <article class="poster" data-speed=".05">
-      <div class="cap"><span>Rule 05</span><span>Library</span></div>
-      <div class="num">5<span style="font-size:.42em;font-style:italic;letter-spacing:0"> to </span>10</div>
-      <div><h3>Templates first.</h3><p style="margin-top:12px">Pick the five to ten approved templates that become the law for a brand. Everything new follows them.</p></div>
-    </article>
-
-    <article class="poster ink tall" data-speed="-.05">
-      <div class="cap"><span>Rule 06</span><span>Atomic</span></div>
-      <svg class="art" viewBox="0 0 260 220" aria-hidden="true"><g class="lift"><rect x="70" y="16" width="120" height="188" rx="6" fill="none" stroke="#eef3ef" stroke-width="2"/><rect x="82" y="30" width="96" height="40" rx="3" fill="#c8fd83"/><rect x="82" y="78" width="96" height="16" rx="3" fill="#b9a8ff"/><rect x="82" y="100" width="44" height="44" rx="3" fill="#8fd0ff"/><rect x="134" y="100" width="44" height="44" rx="3" fill="#8fd0ff"/><rect x="82" y="152" width="96" height="20" rx="10" fill="#eef3ef"/></g><g font-family="IBM Plex Mono" font-size="10" fill="#eef3ef"><text x="196" y="54">organism</text><text x="196" y="90">molecule</text><text x="196" y="126">atom</text></g></svg>
-      <div><h3>Cut it once. Reuse it forever.</h3><p style="margin-top:12px">Atomic Emails splits approved emails into organisms, molecules and atoms, after a reviewer reads the dry run.</p></div>
-    </article>
-
-    <article class="poster mint" data-speed=".08">
-      <div class="cap"><span>Rule 07</span><span>Run</span></div>
-      <div><h3>Capacity = Systems × Standards.</h3><p style="margin-top:12px">One honest number for what your studio can ship, counted from your own task export.</p></div>
-      <svg class="art" viewBox="0 0 260 90" aria-hidden="true"><g class="lift"><rect x="10" y="52" width="34" height="30" fill="#101a15"/><rect x="54" y="38" width="34" height="44" fill="#101a15"/><rect x="98" y="24" width="34" height="58" fill="#101a15"/><rect x="142" y="44" width="34" height="38" fill="#101a15"/><rect x="186" y="8" width="34" height="74" fill="#17904f"/></g></svg>
-    </article>
-
-    <article class="poster dark" data-speed="-.06">
-      <div class="cap"><span>Rule 08</span><span>Match + Remix</span></div>
-      <div class="num">90<span style="font-style:italic">/</span>10</div>
-      <div><h3>The model drafts the 90.</h3><p style="margin-top:12px">Layouts, variations and drafts come ready. The designer gets a short list, and the final say.</p></div>
-    </article>
-
+  <div class="crew">
+    <article class="agent rv"><div class="stage"><span class="prop cards3" style="left:calc(50% - 10px);top:20px"><i></i><i style="transform:translate(3px,3px)"></i><i style="transform:translate(6px,6px)"></i></span><span class="bot sorter" style="--s:.8;margin-top:40px"><i class="eye"></i><i class="eye"></i></span></div><span class="role">Stages 01, 06</span><h3>Sorter</h3><p class="poem">Reads the board before you do.</p><p>Sorts briefs by their status field, flags missing fields, date conflicts and AI images, then matches the copy to approved templates.</p><div class="chips"><span class="chip">intake-sort</span><span class="chip">copy-template-match</span></div></article>
+    <article class="agent rv d1"><div class="stage"><span class="prop books" style="left:calc(50% + 26px);bottom:22px;height:40px;width:40px"><i style="left:0;height:30px;background:var(--lav)"></i><i style="left:12px;height:38px;background:var(--y)"></i><i style="left:24px;height:26px;background:var(--lime)"></i></span><span class="bot librarian" style="--s:.8;--d:-.6s"><i class="eye"></i><i class="eye"></i></span></div><span class="role">Stages 02 to 05</span><h3>Librarian</h3><p class="poem">Remembers every row they loved.</p><p>Digests the approved emails into a library and keeps each brand's hard and soft rules current, from comments and client edits.</p><div class="chips"><span class="chip">library-digest</span><span class="chip">rules-sweep</span></div></article>
+    <article class="agent rv d2"><div class="stage"><span class="prop rows" style="left:calc(50% - 64px);top:30px"><i></i><i></i><i></i></span><span class="bot maker" style="--s:.8;--d:-1.2s"><i class="eye"></i><i class="eye"></i></span></div><span class="role">Stages 06, 07</span><h3>Maker</h3><p class="poem">Builds only from what was approved.</p><p>Picks the precedent, then duplicates, reorders, resizes, flips and swaps copy and photos in Figma. Never draws a new row.</p><div class="chips"><span class="chip">precedent-picker</span><span class="chip">figma-reshuffle-build</span></div></article>
+    <article class="agent rv d3"><div class="stage"><span class="prop" style="left:calc(50% + 30px);top:16px"><span class="stamp">✓</span></span><span class="bot reviewer" style="--s:.8;--d:-1.8s"><i class="eye"></i><i class="eye"></i></span></div><span class="role">Stage 08</span><h3>Reviewer</h3><p class="poem">Asks for evidence, then says so.</p><p>Runs preflight and the 7 point checklist, labels every row Observed, Inferred or Substituted, and builds the review deck.</p><div class="chips"><span class="chip">preflight</span><span class="chip">review-deck</span></div></article>
+    <article class="agent rv d4"><div class="stage"><span class="prop ring" style="left:calc(50% - 42px);top:6px"></span><span class="bot lead" style="--s:.8;--d:-2.4s"><i class="eye"></i><i class="eye"></i></span></div><span class="role">Stage 09</span><h3>Studio lead</h3><p class="poem">Keeps the week on rails.</p><p>Plans the run, assigns briefs in date order, enforces the rules and reports what's ready, waiting on the client, or needs you.</p><div class="chips"><span class="chip">plan-week</span><span class="chip">run-week</span></div></article>
   </div>
+  <p class="hand rv" style="text-align:center;margin-top:26px">and you, the only one who can say yes <span class="bot you" style="--s:.4;vertical-align:middle"><i class="eye"></i><i class="eye"></i></span></p>
 </section>
 
-<!-- PROCESS -->
-<section class="sec process" id="process">
+<!-- LIVE -->
+<section class="sec" id="live" style="padding-top:0">
   <div class="w">
-    <div class="sec-head">
-      <p class="eyebrow rv">The process it installs</p>
-      <h2 class="wsplit">Nine stages, <em>one plugin.</em></h2>
-      <p class="lede rv d1">Each stage is a skill, or a small team: a lead plans, a maker drafts, a reviewer checks with evidence, and you approve. Scroll the board.</p>
+    <div class="head">
+      <span class="tagm rv">Live · sample brand</span>
+      <h2 class="ws">Watch a brief <em>become an email.</em></h2>
+      <p class="lede rv d1">Fernhill is made up. The process is the one we run.</p>
     </div>
-    <div class="proc">
-      <div class="wb" id="wb" aria-hidden="true">
-        <svg viewBox="0 0 620 640" id="wb-svg"></svg>
+    <div class="hall rv">
+      <div class="hall-bar"><span class="d"><i></i><i></i><i></i></span><span>studio / fernhill / week 47</span><span class="pill" style="padding:4px 10px;box-shadow:none;font-size:11px"><span class="live"></span><span id="live-n">stage 1 of 9</span></span></div>
+      <div class="hall-body">
+        <div class="brief"><span class="lab">Brief · Asana</span><div class="top"><span class="ic">FH</span><div><b>Weekend edit</b><div class="lab" style="margin-top:4px">send Sat · status: copy ready</div></div></div><div class="typing" id="live-type"></div></div>
+        <div class="core"><span class="halo"></span><span class="bot lead" id="live-bot"><i class="eye"></i><i class="eye"></i></span><div class="st"><b id="live-rows">0</b> rows reused · <b>0</b> new elements</div></div>
+        <div class="out" id="live-out"></div>
       </div>
-      <div class="steps" id="steps">
-        <div class="step" data-i="0"><span class="n">01 · Intake</span><h3>The board, sorted.</h3><p>Reads briefs from Asana or ClickUp, sorts them by their status field (not the column), and flags missing fields, date conflicts and AI images before anyone opens Figma.</p><div class="chips"><span class="chip k">intake-sort</span><span class="chip k">week-planner</span><span class="chip">Asana</span><span class="chip">ClickUp</span></div></div>
-        <div class="step" data-i="1"><span class="n">02 · Brand</span><h3>The brand, extracted.</h3><p>Point it at the brand's website and it pulls the colours, type, components and motion into a BRAND.md. Then it sweeps 30 days of comments and client edits into hard and soft rules: The Rules File.</p><div class="chips"><span class="chip k">brand-extract</span><span class="chip k">rules-sweep</span><span class="chip k">feedback-twice</span><span class="chip">dembrandt</span></div></div>
-        <div class="step" data-i="2"><span class="n">03 · Library</span><h3>The law, chosen.</h3><p>Digests the brand's approved emails into a library: row sequence, hero signature, module family, product capacity, last used. Templates first, everything else follows.</p><div class="chips"><span class="chip k">library-digest</span><span class="chip">Auto-Sorter app</span></div></div>
-        <div class="step" data-i="3"><span class="n">04 · Layers</span><h3>Files a model can read.</h3><p>Audits the Figma file against Email Layers: every row named, nested and in order. No more Group 234.</p><div class="chips"><span class="chip k">email-layers</span><span class="chip">Figma MCP</span></div></div>
-        <div class="step" data-i="4"><span class="n">05 · Atomic</span><h3>Parts, not pages.</h3><p>Cuts approved emails into organisms, molecules and atoms. A reviewer reads the dry run before anything is written to the file.</p><div class="chips"><span class="chip k">atomic-emails</span></div></div>
-        <div class="step" data-i="5"><span class="n">06 · Match + Remix</span><h3>The right precedent.</h3><p>Matches the brief's copy to approved templates with reasons, picks the precedent (last year's send for a sale, a fresh hero for the rest), locks what the brief fixes and remixes the rest.</p><div class="chips"><span class="chip k">copy-template-match</span><span class="chip k">precedent-picker</span><span class="chip">Template Remix 625</span></div></div>
-        <div class="step" data-i="6"><span class="n">07 · Build</span><h3>Rebuilt from approved rows.</h3><p>The maker duplicates, reorders, resizes, flips and swaps copy and photos in the client's Figma file. Emailify-ready. Links stay a manual step.</p><div class="chips"><span class="chip k">figma-reshuffle-build</span><span class="chip">Emailify</span></div></div>
-        <div class="step" data-i="7"><span class="n">08 · Review</span><h3>Evidence, then a verdict.</h3><p>Preflight runs the 7 point checklist, labels every row Observed, Inferred or Substituted and gives a verdict. Model Review checks the checker against a human.</p><div class="chips"><span class="chip k">preflight</span><span class="chip k">review-deck</span><span class="chip k">model-review-team</span></div></div>
-        <div class="step" data-i="8"><span class="n">You</span><h3>You approve.</h3><p>Nothing ships without your yes. Rejected findings that repeat go back to the rules, so the studio learns your taste.</p><div class="chips"><span class="chip">approve</span><span class="chip">reject</span><span class="chip">patch notes</span></div></div>
-        <div class="step" data-i="9"><span class="n">09 · Run</span><h3>The week, on rails.</h3><p>Plans the week, runs it, reports where time goes with a source on every number, and sets your capacity number for the busy months.</p><div class="chips"><span class="chip k">studio-ops-team</span><span class="chip k">capacity-calculator</span><span class="chip k">run-queue</span></div></div>
+      <div class="mem"><span class="lab">Stages <b id="live-c" style="color:var(--ink)">0/9</b></span><div class="slots" id="live-slots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="sec" id="journey" style="background:var(--paper2)">
+  <div class="w">
+    <div class="head">
+      <span class="tagm rv">The process it installs</span>
+      <h2 class="ws">Nine rooms. <em>One hallway.</em></h2>
+      <p class="lede rv d1">Every brief walks the same hallway, and every room leaves a note for the next. Scroll and follow it.</p>
+    </div>
+    <div class="journey">
+      <div class="map" aria-hidden="true"><svg viewBox="0 0 600 600" id="map"></svg></div>
+      <div class="stops" id="stops">
+        <div class="stop" data-a="sorter"><div class="k"><span class="bot sorter"><i class="eye"></i><i class="eye"></i></span><span class="lab">01 · Intake · sorter</span></div><h3>The board, <em>before coffee.</em></h3><p>Briefs come in from Asana or ClickUp. They're sorted by their status field, not the column they sit in, and anything missing is asked for before Figma opens.</p><div class="io"><b>reads</b><span>briefs, due dates, attachments</span><b>writes</b><span>readiness per brief, client questions</span></div></div>
+        <div class="stop" data-a="librarian"><div class="k"><span class="bot librarian"><i class="eye"></i><i class="eye"></i></span><span class="lab">02 · Brand · librarian</span></div><h3>A website in. <em>A brand out.</em></h3><p>brand-extract reads the brand's site with dembrandt: colours, type, components, motion. rules-sweep reads 30 days of comments and client edits and writes what was said twice as a rule.</p><div class="io"><b>reads</b><span>brand URL, comments, client-edited frames</span><b>writes</b><span>BRAND.md, The Rules File (hard and soft)</span></div></div>
+        <div class="stop" data-a="librarian"><div class="k"><span class="bot librarian"><i class="eye"></i><i class="eye"></i></span><span class="lab">03 · Library · librarian</span></div><h3>The law is <em>five to ten emails.</em></h3><p>The approved emails become a library: row sequence, hero signature, module family, product capacity, last used. A few templates set the rules for everything after.</p><div class="io"><b>reads</b><span>approved emails in Figma</span><b>writes</b><span>library.json</span></div></div>
+        <div class="stop" data-a="reviewer"><div class="k"><span class="bot reviewer"><i class="eye"></i><i class="eye"></i></span><span class="lab">04 · Layers</span></div><h3>Name it, <em>or it doesn't exist.</em></h3><p>Email Layers gives every row a name and an order. The audit flags anything an agent couldn't read. Group 234 doesn't make it through.</p><div class="io"><b>reads</b><span>the Figma file, through Figma MCP</span><b>writes</b><span>a layer report, fixes only on your yes</span></div></div>
+        <div class="stop" data-a="librarian"><div class="k"><span class="bot librarian"><i class="eye"></i><i class="eye"></i></span><span class="lab">05 · Atomic · librarian</span></div><h3>Cut once. <em>Reuse forever.</em></h3><p>Approved emails are split into organisms, molecules and atoms. A reviewer reads the dry run before a single part is written.</p><div class="io"><b>reads</b><span>an approved email</span><b>writes</b><span>named parts, ready for the next build</span></div></div>
+        <div class="stop" data-a="maker"><div class="k"><span class="bot maker"><i class="eye"></i><i class="eye"></i></span><span class="lab">06 · Match + Remix · sorter, maker</span></div><h3>The right precedent, <em>with reasons.</em></h3><p>The copy is matched to approved templates slot by slot. For a sale, last year's matching send. For the rest, a hero and a module unused in the last 8 sends. What the brief fixes stays locked.</p><div class="io"><b>reads</b><span>brief copy, library.json</span><b>writes</b><span>a precedent and a copy-to-row map</span></div></div>
+        <div class="stop" data-a="maker"><div class="k"><span class="bot maker"><i class="eye"></i><i class="eye"></i></span><span class="lab">07 · Build · maker</span></div><h3>No new <em>elements.</em></h3><p>The maker duplicates approved rows and reorders, resizes, flips and swaps copy and photos in the client's Figma file. Emailify-ready. Links stay a manual step.</p><div class="io"><b>reads</b><span>the precedent rows</span><b>writes</b><span>the email, in Figma</span></div></div>
+        <div class="stop" data-a="reviewer"><div class="k"><span class="bot reviewer"><i class="eye"></i><i class="eye"></i></span><span class="lab">08 · Review · reviewer</span></div><h3>Evidence, <em>then a verdict.</em></h3><p>Preflight runs the 7 point checklist and gives one of four verdicts: Ready, Ready with substitutions, Not ready, Unverified. Model Review checks the checker against a human.</p><div class="io"><b>reads</b><span>the built email, the rules</span><b>writes</b><span>a decision card and a review deck</span></div></div>
+        <div class="stop" data-a="you"><div class="k"><span class="bot you"><i class="eye"></i><i class="eye"></i></span><span class="lab">You</span></div><h3>Only you <em>say yes.</em></h3><p>Accept or reject each finding. A rejection that repeats goes back to the rules, so next week the studio already knows.</p><div class="io"><b>reads</b><span>the deck, on your phone or in Figma</span><b>writes</b><span>approved, or changes</span></div></div>
+        <div class="stop" data-a="lead"><div class="k"><span class="bot lead"><i class="eye"></i><i class="eye"></i></span><span class="lab">09 · Run · studio lead</span></div><h3>The week, <em>on rails.</em></h3><p>The lead plans the week, runs it in date order, and reports where the time went with a source on every number. The capacity calculator gives one honest number for the busy months.</p><div class="io"><b>reads</b><span>the week plan, your task export</span><b>writes</b><span>the week report, your capacity number</span></div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section class="sec w" id="rules">
+  <div class="head">
+    <span class="tagm rv">Pinned in the studio</span>
+    <h2 class="ws">Taste does not scale. <em>Standards do.</em></h2>
+    <p class="lede rv d1">Every skill is one of these, written so a model can follow it the day it joins.</p>
+  </div>
+  <div class="board">
+    <article class="poster tall lime" data-speed=".06" style="--rot:-1deg"><div class="cap"><span>Rule 01</span><span>Build</span></div><svg class="pa" viewBox="0 0 260 180" aria-hidden="true"><rect x="40" y="24" width="180" height="28" fill="#121110"/><rect x="40" y="58" width="180" height="56" fill="#fff" stroke="#121110" stroke-width="2"/><rect x="40" y="120" width="180" height="20" fill="#F5E6A3" stroke="#121110" stroke-width="2"/><circle cx="214" cy="150" r="24" fill="#fff" stroke="#121110" stroke-width="2.5"/><path d="M202 150h24M214 138v24" stroke="#121110" stroke-width="3"/><path d="M196 132l36 36" stroke="#E8447A" stroke-width="4"/></svg><div><h3>No new elements.</h3><p style="margin-top:12px">Every email is rebuilt from rows the client already approved. Anything new is flagged, never invented.</p></div></article>
+    <article class="poster ink" data-speed="-.04" style="--rot:1deg"><div class="cap"><span>Rule 02</span><span>Brand</span></div><div><h3>Feedback that happens twice is a rule you forgot to write.</h3></div><p class="hand" style="color:#C9F135;font-size:26px">"black only for the sale" ×2</p></article>
+    <article class="poster y" data-speed=".09"><div class="cap"><span>Rule 03</span><span>Layers</span></div><svg class="pa" viewBox="0 0 260 140" aria-hidden="true"><rect x="20" y="14" width="220" height="32" rx="6" fill="#fff" stroke="#121110" stroke-width="2"/><text x="36" y="36" font-family="Space Mono" font-size="14" fill="#121110">Group 234</text><path d="M200 22l18 18M218 22l-18 18" stroke="#E8447A" stroke-width="3"/><rect x="20" y="60" width="220" height="30" rx="6" fill="#121110"/><text x="36" y="80" font-family="Space Mono" font-size="13" fill="#C9F135">Hero / Image</text><rect x="20" y="96" width="220" height="30" rx="6" fill="#121110"/><text x="36" y="116" font-family="Space Mono" font-size="13" fill="#C9F135">Products / Grid 2</text></svg><div><h3>Agents can't read Group 234.</h3></div></article>
+    <article class="poster lav" data-speed="-.07" style="--rot:-1.5deg"><div class="cap"><span>Rule 04</span><span>Review</span></div><svg class="pa" viewBox="0 0 260 150" aria-hidden="true"><circle cx="130" cy="75" r="62" fill="none" stroke="#121110" stroke-width="2" stroke-dasharray="4 7"/><circle cx="130" cy="75" r="48" fill="#fff" stroke="#121110" stroke-width="2"/><text x="130" y="72" text-anchor="middle" font-family="Figtree" font-weight="700" font-size="14" letter-spacing="3" fill="#121110">APPROVED</text><text x="130" y="92" text-anchor="middle" font-family="Space Mono" font-size="10" fill="#4B4741">by a human</text></svg><div><h3>AI drafts. Humans approve.</h3></div></article>
+    <article class="poster" data-speed=".05" style="--rot:1deg"><div class="cap"><span>Rule 05</span><span>Library</span></div><div class="num">5<span style="font-size:.4em;font-style:italic;letter-spacing:0"> to </span>10</div><div><h3>Templates first.</h3><p style="margin-top:12px">Five to ten approved templates become the law for a brand.</p></div></article>
+    <article class="poster tall blue" data-speed="-.05"><div class="cap"><span>Rule 06</span><span>Atomic</span></div><svg class="pa" viewBox="0 0 260 210" aria-hidden="true"><rect x="60" y="14" width="120" height="182" rx="6" fill="none" stroke="#fff" stroke-width="2"/><rect x="72" y="28" width="96" height="40" rx="3" fill="#C9F135"/><rect x="72" y="76" width="96" height="16" rx="3" fill="#D4C8F0"/><rect x="72" y="98" width="44" height="44" rx="3" fill="#fff"/><rect x="124" y="98" width="44" height="44" rx="3" fill="#fff"/><rect x="72" y="150" width="96" height="20" rx="10" fill="#F5E6A3"/><g font-family="Space Mono" font-size="10" fill="#fff"><text x="186" y="52">organism</text><text x="186" y="88">molecule</text><text x="186" y="124">atom</text></g></svg><div><h3>Cut once. Reuse forever.</h3></div></article>
+    <article class="poster pink" data-speed=".08" style="--rot:-1deg"><div class="cap"><span>Rule 07</span><span>Run</span></div><div><h3>Capacity = Systems × Standards.</h3><p style="margin-top:12px">One honest number for what your studio can ship, from your own task export.</p></div></article>
+    <article class="poster ink" data-speed="-.06" style="--rot:1.5deg"><div class="cap"><span>Rule 08</span><span>Remix</span></div><div class="num" style="color:#C9F135">90<span style="font-style:italic">/</span>10</div><div><h3>The model drafts the 90.</h3><p style="margin-top:12px">You keep the 10 that makes it theirs.</p></div></article>
   </div>
 </section>
 
 <!-- DEMOS -->
-<section class="sec w" id="demos">
-  <div class="sec-head">
-    <p class="eyebrow rv">See it run</p>
-    <h2 class="wsplit">Three stages, <em>up close.</em></h2>
+<section class="sec w" id="demos" style="padding-top:0">
+  <div class="head">
+    <span class="tagm rv">Up close</span>
+    <h2 class="ws">Three rooms, <em>with the door open.</em></h2>
   </div>
-  <div class="demos">
-    <div class="tabs" role="tablist" aria-label="Demos">
-      <button class="tab" role="tab" aria-selected="true" data-demo="brand">02 · Brand extraction</button>
-      <button class="tab" role="tab" aria-selected="false" data-demo="atomic">05 · Atomic</button>
-      <button class="tab" role="tab" aria-selected="false" data-demo="review">08 · Preflight</button>
-    </div>
-    <div class="demo-grid">
-      <div class="demo-copy" id="demo-copy"></div>
-      <div class="stage" aria-hidden="true"><div class="win"><div class="win-bar"><i></i><i></i><i></i><b id="demo-title">Claude Code</b></div><div id="demo-body"></div></div><div class="stage-cap"><span id="demo-cap"></span><span>sample brand, made up</span></div></div>
-    </div>
+  <div class="tabs" role="tablist" aria-label="Demos">
+    <button class="tab" role="tab" aria-selected="true" data-demo="brand"><span class="bot librarian"><i class="eye"></i><i class="eye"></i></span>Brand extraction</button>
+    <button class="tab" role="tab" aria-selected="false" data-demo="atomic"><span class="bot librarian"><i class="eye"></i><i class="eye"></i></span>Atomic</button>
+    <button class="tab" role="tab" aria-selected="false" data-demo="review"><span class="bot reviewer"><i class="eye"></i><i class="eye"></i></span>Preflight</button>
+  </div>
+  <div class="demo">
+    <div class="dcopy" id="dcopy"></div>
+    <div class="win"><div class="wbar"><i></i><i></i><i></i><span id="dtitle"></span></div><div id="dbody"></div></div>
   </div>
 </section>
 
 <!-- PROOF -->
 <section class="sec proof" id="proof">
   <div class="w">
-    <div class="sec-head">
-      <p class="eyebrow rv">Where it comes from</p>
-      <h2 class="wsplit">Built on a studio <em>that ships.</em></h2>
-      <p class="lede rv d1">Emaily has designed emails for client brands since July 2021. These are the numbers from our own task export, not a forecast.</p>
+    <div class="head">
+      <span class="lab rv">Where it comes from</span>
+      <h2 class="ws">Not a theory. <em>A studio that ships.</em></h2>
+      <p class="lede rv d1">Emaily has designed emails for client brands since July 2021. These numbers are from our own task export.</p>
     </div>
     <div class="stats rv">
       <div class="stat"><b>2,705</b><span>designs, Jan 1 to Oct 27, 2026</span></div>
@@ -198,107 +199,78 @@
       <div class="stat"><b>~15</b><span>designs a business day for the team, since March</span></div>
       <div class="stat"><b>542</b><span>designs in July 2026, the peak month</span></div>
     </div>
-    <div class="atomize" id="atomize">
-      <p class="eyebrow" style="margin-top:8px">One Atomize run</p>
-      <div class="belt">
-        <div class="bar"><span>approved emails in</span><b>832</b><div class="fill" style="--s:.044"></div></div>
-        <div class="bar"><span>parts cut</span><b>18,925</b><div class="fill" style="--s:1"></div></div>
-        <div class="bar"><span>unique parts kept</span><b>8,257</b><div class="fill" style="--s:.436"></div></div>
-      </div>
-      <p class="src">About 7 minutes. Source: ClickUp export and the Atomize run log. The AI review loop is still in testing, so no hit rate is claimed.</p>
+    <div class="belt" id="belt">
+      <div class="bar"><span>approved emails in</span><b>832</b><div class="fill" style="--s:.044"></div></div>
+      <div class="bar"><span>parts cut</span><b>18,925</b><div class="fill" style="--s:1"></div></div>
+      <div class="bar"><span>unique parts kept</span><b>8,257</b><div class="fill" style="--s:.436"></div></div>
     </div>
+    <p class="src">One Atomize run, about 7 minutes. Source: ClickUp export and the run log. The AI review loop is in testing, so no hit rate is claimed.</p>
   </div>
 </section>
 
-<!-- WHAT YOU GET -->
+<!-- BOX + INSTALL -->
 <section class="sec w" id="box">
-  <div class="sec-head">
-    <p class="eyebrow rv">What's in the box</p>
-    <h2 class="wsplit">Every format <em>you'd want.</em></h2>
-    <p class="lede rv d1">A local product you install and own. Use it in Claude Code with the agents, or one skill at a time in the Claude app.</p>
+  <div class="head">
+    <span class="tagm rv">What's in the box</span>
+    <h2 class="ws">Yours to keep, <em>on your machine.</em></h2>
   </div>
   <div class="box">
-    <div class="item rv"><div class="ic"><svg viewBox="0 0 30 30" fill="none" stroke="#127a42" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="24" height="20" rx="3"/><path d="M8 12l4 3-4 3M15 19h7"/></svg></div><span class="fmt">Claude Code plugin</span><h3>The studio</h3><p>19 skills, 5 agents (sorter, librarian, maker, reviewer, studio lead) and slash commands for a new brand, the week plan and the week run.</p></div>
-    <div class="item rv d1"><div class="ic"><svg viewBox="0 0 30 30" fill="none" stroke="#127a42" stroke-width="2" stroke-linejoin="round"><path d="M6 4h12l6 6v16H6z"/><path d="M18 4v6h6M11 17h8M11 21h5"/></svg></div><span class="fmt">Claude app skills</span><h3>One zip per skill</h3><p>The same skills for claude.ai and the desktop app, for people who don't use Claude Code.</p></div>
-    <div class="item rv d2"><div class="ic"><svg viewBox="0 0 30 30" fill="none" stroke="#127a42" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6" width="18" height="18" rx="3"/><path d="M21 12l6-4v14l-6-4z"/></svg></div><span class="fmt">Workshop</span><h3>The 9 stages, live</h3><p>Every stage run on a sample brand, start to finish. Recording date: <mark class="ph">to confirm</mark>.</p></div>
-    <div class="item rv"><div class="ic"><svg viewBox="0 0 30 30" fill="none" stroke="#127a42" stroke-width="2"><path d="M5 5h20v20H5z"/><path d="M9 10h12M9 15h12M9 20h7"/></svg></div><span class="fmt">SOP</span><h3>The process guide</h3><p>The 9 stages as a printable guide: what each one reads, writes and hands to the next.</p></div>
-    <div class="item rv d1"><div class="ic"><svg viewBox="0 0 30 30" fill="none" stroke="#127a42" stroke-width="2" stroke-linejoin="round"><rect x="4" y="8" width="16" height="18" rx="2"/><path d="M10 4h16v18"/></svg></div><span class="fmt">Kits</span><h3>Rules File and more</h3><p>The Rules File, the brand extraction template, the verdict cheat sheet and a filled sample brand.</p></div>
-    <div class="item rv d2"><div class="ic"><svg viewBox="0 0 30 30" fill="none" stroke="#127a42" stroke-width="2" stroke-linejoin="round"><rect x="4" y="4" width="9" height="9" rx="2"/><rect x="17" y="4" width="9" height="9" rx="2"/><rect x="4" y="17" width="9" height="9" rx="2"/><path d="M17 21.5h9M21.5 17v9"/></svg></div><span class="fmt">Web app</span><h3>Auto-Sorter</h3><p>Sorts and names a template library in the browser. Free, and linked from the kit.</p></div>
+    <div class="item rv"><div class="ic"><svg viewBox="0 0 26 26" fill="none" stroke="#121110" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="22" height="18" rx="3"/><path d="M7 10l4 3-4 3M13 17h6"/></svg></div><span class="fmt">Claude Code plugin</span><h3>The studio</h3><p>19 skills by stage, 5 agents and commands for a new brand, the week plan and the week run.</p></div>
+    <div class="item rv d1"><div class="ic" style="--bg:var(--lav)"><svg viewBox="0 0 26 26" fill="none" stroke="#121110" stroke-width="2" stroke-linejoin="round"><path d="M5 3h11l5 5v15H5z"/><path d="M16 3v5h5M9 14h8M9 18h5"/></svg></div><span class="fmt">Claude app skills</span><h3>One zip per skill</h3><p>The same skills for claude.ai and the desktop app, if you don't use Claude Code.</p></div>
+    <div class="item rv d2"><div class="ic" style="--bg:var(--y)"><svg viewBox="0 0 26 26" fill="none" stroke="#121110" stroke-width="2" stroke-linejoin="round"><rect x="2" y="5" width="16" height="16" rx="3"/><path d="M18 11l6-4v12l-6-4z"/></svg></div><span class="fmt">Workshop</span><h3>The nine rooms, live</h3><p>Every stage on a sample brand. Recording date: <mark class="ph">to confirm</mark>.</p></div>
+    <div class="item rv"><div class="ic" style="--bg:#cfe9ff"><svg viewBox="0 0 26 26" fill="none" stroke="#121110" stroke-width="2"><path d="M4 4h18v18H4z"/><path d="M8 9h10M8 13h10M8 17h6"/></svg></div><span class="fmt">SOP</span><h3>The hallway, printed</h3><p>What each stage reads, writes and hands to the next.</p></div>
+    <div class="item rv d1"><div class="ic" style="--bg:#f9b9cf"><svg viewBox="0 0 26 26" fill="none" stroke="#121110" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="14" height="16" rx="2"/><path d="M8 3h15v16"/></svg></div><span class="fmt">Kits</span><h3>Rules File and more</h3><p>The Rules File, the brand extraction template, the verdict cheat sheet, a filled sample brand.</p></div>
+    <div class="item rv d2"><div class="ic" style="--bg:var(--mint)"><svg viewBox="0 0 26 26" fill="none" stroke="#121110" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="15" y="3" width="8" height="8" rx="2"/><rect x="3" y="15" width="8" height="8" rx="2"/><path d="M15 19h8M19 15v8"/></svg></div><span class="fmt">Web app</span><h3>Auto-Sorter</h3><p>Sorts and names a template library in the browser. Free, linked from the kit.</p></div>
   </div>
-</section>
-
-<!-- INSTALL -->
-<section class="sec w" id="install" style="padding-top:0">
   <div class="install">
-    <div class="sec-head" style="margin:0">
-      <p class="eyebrow rv">Install</p>
-      <h2 class="wsplit">Two commands. <em>About five minutes.</em></h2>
-      <p class="lede rv d1">Unzip the plugin, add it in Claude Code, connect Figma and Asana or ClickUp. Then start your first brand. You need a paid Claude plan, Figma, and Emailify for export.</p>
+    <div style="display:grid;gap:16px">
+      <span class="tagm rv" style="justify-self:start">Install</span>
+      <h2 class="ws">Two commands. <em>About five minutes.</em></h2>
+      <p class="lede rv d1">Unzip the plugin, add it in Claude Code, connect Figma and Asana or ClickUp, then start your first brand. You need a paid Claude plan, Figma, and Emailify for export.</p>
     </div>
-    <div class="stage" aria-hidden="true"><div class="win"><div class="win-bar"><i></i><i></i><i></i><b>~/email-studio-work · claude</b></div><div class="term" id="install-term"></div></div></div>
+    <div class="win rv"><div class="wbar"><i></i><i></i><i></i><span>~/email-studio-work · claude</span></div><div class="term" id="iterm"></div></div>
   </div>
 </section>
 
 <!-- PACKAGES -->
-<section class="sec" id="packages" style="background:var(--bg2)">
+<section class="sec dots" id="packages">
   <div class="w">
-    <div class="sec-head">
-      <p class="eyebrow rv">Packages</p>
-      <h2 class="wsplit">Start free. <em>Install it all.</em> Get it fitted.</h2>
+    <div class="head">
+      <span class="tagm rv">Packages</span>
+      <h2 class="ws">Start free. <em>Install it all.</em> Get it fitted.</h2>
     </div>
     <div class="pk">
-      <div class="pkg rv">
-        <span class="tier">Free</span>
-        <h3>The Brand Intake Kit</h3>
-        <div class="price">$0</div>
-        <ul><li>The Rules File: hard and soft rules for one brand, with a filled sample</li><li>The brand extraction skill: a website in, a BRAND.md out</li><li>How to pull rules from 30 days of comments</li></ul>
-        <a class="btn btn-ghost" href="https://www.halloftemplates.com/email-studio-rules-file">Send me the kit</a>
-        <span class="note">By email. Start with one client.</span>
-      </div>
-      <div class="pkg main rv d1">
-        <span class="badge">The whole process</span>
-        <span class="tier">Install it yourself</span>
-        <h3>Email Studio</h3>
-        <div class="price">$100<small>one time</small></div>
-        <ul><li>The Claude Code plugin: 9 stages, 19 skills, 5 agents</li><li>The same skills as Claude app zips</li><li>The workshop, the SOP and every kit</li><li>The Auto-Sorter app</li><li>Updates to the plugin</li></ul>
-        <a class="btn btn-cta" href="https://www.halloftemplates.com/email-studio-workshop">Get Email Studio <span class="arr">→</span></a>
-        <span class="note">30-day refund, no questions. Add 1,000 Figma templates for $12 at checkout.</span>
-      </div>
-      <div class="pkg rv d2">
-        <span class="tier">1:1 with Diego</span>
-        <h3>Setup call</h3>
-        <div class="price">$250<small>per hour</small></div>
-        <ul><li>One hour on Zoom, on your briefs, brands and tools</li><li>We fit the rules, the library and the week run to your studio</li><li>Book more hours as you need them</li></ul>
-        <a class="btn btn-ghost" href="https://www.halloftemplates.com/email-studio-workshop">Add it after checkout</a>
-        <span class="note">Offered right after you get Email Studio.</span>
-      </div>
+      <div class="pkg rv"><span class="tier"><span class="bot librarian"><i class="eye"></i><i class="eye"></i></span><span class="lab">Free</span></span><h3>The Brand Intake Kit</h3><div class="price">$0</div><ul><li>The Rules File for one brand, with a filled sample</li><li>The brand extraction skill: a website in, a BRAND.md out</li><li>How to pull rules from 30 days of comments</li></ul><a class="btn btn-ghost" href="https://www.halloftemplates.com/email-studio-rules-file">Send me the kit</a><span class="note">By email. Start with one client.</span></div>
+      <div class="pkg main rv d1"><span class="badge">The whole studio</span><span class="tier"><span class="bot lead"><i class="eye"></i><i class="eye"></i></span><span class="lab" style="color:#9a948a">Install it yourself</span></span><h3>Email Studio</h3><div class="price">$100<small>one time</small></div><ul><li>The Claude Code plugin: 5 agents, 9 stages, 19 skills</li><li>The same skills as Claude app zips</li><li>The workshop, the SOP and every kit</li><li>The Auto-Sorter app</li><li>Plugin updates</li></ul><a class="btn btn-buy" href="https://www.halloftemplates.com/email-studio-workshop">Get Email Studio <span class="arr">→</span></a><span class="note">30-day refund, no questions. Add 1,000 Figma templates for $12 at checkout.</span></div>
+      <div class="pkg rv d2"><span class="tier"><span class="bot you"><i class="eye"></i><i class="eye"></i></span><span class="lab">1:1 with Diego</span></span><h3>Setup call</h3><div class="price">$250<small>per hour</small></div><ul><li>One hour on Zoom, on your briefs, brands and tools</li><li>We fit the rules, the library and the week run to your studio</li><li>Book more hours as you need them</li></ul><a class="btn btn-ghost" href="https://www.halloftemplates.com/email-studio-workshop">Add it after checkout</a><span class="note">Offered right after you get Email Studio.</span></div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="sec w" id="faq">
-  <div class="sec-head"><p class="eyebrow rv">FAQ</p><h2 class="wsplit">Good <em>questions.</em></h2></div>
+  <div class="head"><span class="tagm rv">FAQ</span><h2 class="ws">Fair <em>questions.</em></h2></div>
   <div class="faq">
-    <details><summary>Is this done for you?</summary><p>No. You install it and run it yourself, on your own machine and your own files. If you want it fitted to your studio, book a 1:1 setup call.</p></details>
-    <details><summary>What do I need?</summary><p>A paid Claude plan (Claude Code for the full plugin, or the Claude app for the skill zips), Figma, and Asana or ClickUp for briefs. Emailify for export. Brand extraction needs Node 18 or newer.</p></details>
+    <details><summary>Is this done for you?</summary><p>No. You install it and run it yourself, on your machine and your files. If you want it fitted to your studio, book a 1:1 setup call.</p></details>
+    <details><summary>What do I need?</summary><p>A paid Claude plan (Claude Code for the plugin, or the Claude app for the skill zips), Figma, and Asana or ClickUp for briefs. Emailify for export. Brand extraction needs Node 18 or newer.</p></details>
     <details><summary>Does it design new emails from scratch?</summary><p>No, on purpose. It rebuilds every email from rows the client already approved, and flags anything that would need a new element.</p></details>
-    <details><summary>Will it touch my client's files without asking?</summary><p>Never. Every skill drafts, then stops. A human approves before anything is applied to a file or a rulebook.</p></details>
+    <details><summary>Will it touch my client's files without asking?</summary><p>Never. Every skill drafts, then stops. A human approves before anything changes in a file or a rulebook.</p></details>
     <details><summary>Is the workshop live or recorded?</summary><p>Recorded. Recording date: <mark class="ph">to confirm</mark>.</p></details>
     <details><summary>Can I get a refund?</summary><p>Yes. 30 days, no questions.</p></details>
   </div>
 </section>
 
 <section class="sec w closer" style="padding-top:0">
-  <img src="dfy-mark.svg" alt="" width="40" height="40" class="rv">
-  <h2 class="wsplit">Feed it your process <em>before it eats you.</em></h2>
-  <a class="btn btn-cta rv" href="#packages">See the packages <span class="arr">→</span></a>
+  <div class="art" id="close-art"><canvas id="close-cv"></canvas><div class="screen" id="close-screen"><span style="font:400 clamp(14px,2vw,22px) var(--pixel);color:#fff">Installed.</span></div></div>
+  <h2 class="ws">Go make something <em>they already love.</em></h2>
+  <a class="btn btn-buy rv" href="#packages">See the packages <span class="arr">→</span></a>
 </section>
 
 </main>
 
-<footer><div class="w"><span>Email Studio by Diego Garza · Emaily DFY · <a href="https://dieginmachin.github.io/process/">The process</a></span><span>Figma, Emailify, Asana, ClickUp and Claude are trademarks of their owners. Email Studio is not affiliated with them.</span></div></footer>
+<footer><div class="w"><span>Email Studio by Diego Garza · Emaily DFY · The Hall Of Templates</span><span>Figma, Emailify, Asana, ClickUp and Claude are trademarks of their owners. Not affiliated.</span></div></footer>
 
+<script src="scene.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
