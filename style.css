@@ -365,3 +365,22 @@ footer .w{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
   .intro{display:none}
 }
 @media (max-width:720px){.rt{align-items:start;padding-top:12vh}}
+
+/* v3.1 hero: the pixel scene is the whole section and dissolves into the page */
+.hero{min-height:0;padding:0 0 clamp(90px,15vh,170px);background:#3e70d6;isolation:isolate}
+.hbg{position:absolute;inset:0;z-index:-2}
+.hbg canvas{width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.hbg .screen{position:absolute;background:#2a56b8;overflow:hidden;display:grid;place-items:center}
+.hbg .screen .mini{width:62%;height:auto;aspect-ratio:3/4;border-width:1.5px;padding:4%;gap:5%;border-color:#13285e}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,rgba(244,241,234,0) 0%,rgba(244,241,234,.55) 45%,rgba(244,241,234,.92) 78%,var(--paper) 100%)}
+.haze{position:absolute;left:0;right:0;bottom:0;height:44%;z-index:-1;pointer-events:none;-webkit-backdrop-filter:blur(7px) saturate(.9);backdrop-filter:blur(7px) saturate(.9);-webkit-mask:linear-gradient(to bottom,transparent,#000 70%);mask:linear-gradient(to bottom,transparent,#000 70%)}
+.hero-sky{height:clamp(340px,52svh,580px)}
+.hbox{background:#fff;width:min(920px,100%);padding:clamp(26px,4vw,52px) clamp(20px,4vw,56px);display:grid;justify-items:center;gap:20px;text-align:center;box-shadow:0 30px 60px -34px rgba(18,17,16,.55)}
+.hbox .pill{box-shadow:none;background:var(--paper)}
+.hero .hbox.fade{opacity:0;transform:translateY(28px)}
+.hero.in .hbox.fade{opacity:1;transform:none}
+.replay{appearance:none;border:1px solid rgba(18,17,16,.14);background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:999px;padding:9px 16px;font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink);cursor:pointer;transition:transform .35s var(--spring),background .2s}
+.replay:hover{transform:translateY(-2px);background:#fff}
+.replay.sm{padding:5px 10px;font-size:10px;background:none;backdrop-filter:none}
+.hero .fade.f3{transition-delay:.6s}
+@media (max-width:700px){.hero-sky{height:clamp(260px,44svh,400px)}.hbox{padding:24px 18px}.hero h1{font-size:clamp(46px,13vw,64px)}}

@@ -59,30 +59,29 @@
 <main id="top">
 
 <!-- HERO -->
-<section class="hero dots" id="hero">
-  <div class="float hide-m" style="left:3%;top:15%"><div class="fcard" style="--rot:-3deg"><div class="t">Welcome #1 · Skincare</div><i style="--h:16px;--bg:#5c1a2b"></i><i style="--h:70px;--bg:#c9a24a"></i><i style="--h:8px;--bg:#eee"></i><i style="--h:8px;width:70%;--bg:#eee"></i><i style="--h:18px;width:60%;margin:auto;--bg:#f9b9cf"></i></div></div>
-  <div class="float hide-m" style="left:6%;top:56%"><div class="fcard" style="--rot:2deg;--d:-2s;width:130px"><div class="t">Winback · Coffee</div><i style="--h:12px;--bg:#2b2b2b"></i><i style="--h:60px;--bg:#d8cbb4"></i><i style="--h:8px;--bg:#eee"></i><i style="--h:16px;width:66%;--bg:#121110"></i><span class="sel" data-n="Hero / Image"></span></div></div>
-  <div class="float hide-m" style="right:4%;top:14%"><div class="fcard" style="--rot:3deg;--d:-4s"><div class="t">Launch · Jewelry</div><i style="--h:84px;--bg:#e8e2d6"></i><i style="--h:10px;--bg:#ddd"></i><i style="--h:10px;width:76%;--bg:#ddd"></i></div></div>
-  <div class="float hide-m" style="right:7%;top:52%"><div class="fcard" style="--rot:-2deg;--d:-1s;width:136px"><div class="t">Promo · Home</div><i style="--h:64px;--bg:#3f5a46"></i><i style="--h:9px;--bg:#eee"></i><i style="--h:18px;--bg:#FF8A3D"></i></div></div>
-  <div class="cur hide-m float" style="left:13%;top:36%;--c:var(--green)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#14AE5C" stroke="#fff" stroke-width="1.2"/></svg><b>You</b></div>
-  <div class="cur hide-m float" style="right:13%;top:44%;--c:var(--orange)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#FF8A3D" stroke="#fff" stroke-width="1.2"/></svg><b>Claude · maker</b></div>
-  <div class="cur hide-m float" style="left:16%;top:47%;--c:var(--purple)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#7B61FF" stroke="#fff" stroke-width="1.2"/></svg><b>Diego</b></div>
-  <div class="note-hand hide-m float" style="right:5%;top:31%">rebuilt, never invented ↘</div>
-  <div class="float hide-m" style="right:17%;top:9%"><span class="bot reviewer" style="--s:.55;--d:-1s"><i class="eye"></i><i class="eye"></i></span></div>
-  <div class="float hide-m" style="left:24%;top:9%"><span class="bot sorter" style="--s:.45;--d:-2s"><i class="eye"></i><i class="eye"></i></span></div>
+<section class="hero" id="hero">
+  <div class="hbg" aria-hidden="true"><canvas id="hero-cv"></canvas><div class="screen" id="hero-screen"><div class="mini" id="hero-mini"></div></div></div>
+  <div class="haze" aria-hidden="true"></div>
+  <div class="float hide-m" style="left:3%;top:40%"><div class="fcard" style="--rot:-3deg"><div class="t">Welcome #1 · Skincare</div><i style="--h:16px;--bg:#5c1a2b"></i><i style="--h:70px;--bg:#c9a24a"></i><i style="--h:8px;--bg:#eee"></i><i style="--h:8px;width:70%;--bg:#eee"></i><i style="--h:18px;width:60%;margin:auto;--bg:#f9b9cf"></i></div></div>
+  <div class="float hide-m" style="left:5%;top:66%"><div class="fcard" style="--rot:2deg;--d:-2s;width:130px"><div class="t">Winback · Coffee</div><i style="--h:12px;--bg:#2b2b2b"></i><i style="--h:60px;--bg:#d8cbb4"></i><i style="--h:8px;--bg:#eee"></i><i style="--h:16px;width:66%;--bg:#121110"></i><span class="sel" data-n="Hero / Image"></span></div></div>
+  <div class="float hide-m" style="right:3%;top:38%"><div class="fcard" style="--rot:3deg;--d:-4s"><div class="t">Launch · Jewelry</div><i style="--h:84px;--bg:#e8e2d6"></i><i style="--h:10px;--bg:#ddd"></i><i style="--h:10px;width:76%;--bg:#ddd"></i></div></div>
+  <div class="float hide-m" style="right:6%;top:64%"><div class="fcard" style="--rot:-2deg;--d:-1s;width:136px"><div class="t">Promo · Home</div><i style="--h:64px;--bg:#3f5a46"></i><i style="--h:9px;--bg:#eee"></i><i style="--h:18px;--bg:#FF8A3D"></i></div></div>
+  <div class="cur hide-m float" style="left:16%;top:56%;--c:var(--green)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#14AE5C" stroke="#fff" stroke-width="1.2"/></svg><b>You</b></div>
+  <div class="cur hide-m float" style="right:15%;top:22%;--c:var(--orange)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#FF8A3D" stroke="#fff" stroke-width="1.2"/></svg><b>Claude · maker</b></div>
+  <div class="cur hide-m float" style="left:20%;top:24%;--c:var(--purple)"><svg viewBox="0 0 16 16"><path d="M1.5 1l12 5.6-5.2 1.5-2.1 5z" fill="#7B61FF" stroke="#fff" stroke-width="1.2"/></svg><b>Diego</b></div>
+  <div class="float hide-m" style="right:24%;top:14%"><span class="bot reviewer" style="--s:.55;--d:-1s"><i class="eye"></i><i class="eye"></i></span></div>
+  <div class="float hide-m" style="left:30%;top:16%"><span class="bot sorter" style="--s:.45;--d:-2s"><i class="eye"></i><i class="eye"></i></span></div>
 
+  <div class="hero-sky" id="hero-sky"></div>
   <div class="w hero-c">
-    <span class="pill fade"><span class="live"></span>Now installing · the studio behind 2,705 designs this year</span>
-    <h1><span class="l"><span>Install the studio.</span></span><span class="l"><span><em>Run it yourself.</em></span></span></h1>
-    <p class="lede fade f2">Five Claude agents and nine stages that take a brief from your board to an approved email in Figma. They read the brand, remember what the client loved, rebuild from it, and check their own work. You say yes.</p>
-    <div class="ctas fade f3"><a class="btn btn-buy" href="https://www.halloftemplates.com/email-studio-workshop">Get Email Studio · $100 <span class="arr">→</span></a><a class="btn btn-ghost" href="#crew">Meet the crew</a></div>
-    <p class="note fade f4"><b>Claude Code plugin</b> · Claude app skills · a human approves every email</p>
-  </div>
-
-  <div class="art fade f4" id="hero-art">
-    <canvas id="hero-cv"></canvas>
-    <div class="screen" id="hero-screen"><div class="mini" id="hero-mini"></div></div>
-    <div class="scap">The studio, on one machine.<small>installs in about five minutes</small></div>
+    <div class="hbox fade">
+      <span class="pill"><span class="live"></span>Now installing · the studio behind 2,705 designs this year</span>
+      <h1><span class="l"><span>Install the studio.</span></span><span class="l"><span><em>Run it yourself.</em></span></span></h1>
+      <p class="lede">Five Claude agents and nine stages that take a brief from your board to an approved email in Figma. They read the brand, remember what the client loved, rebuild from it, and check their own work. You say yes.</p>
+      <div class="ctas"><a class="btn btn-buy" href="https://www.halloftemplates.com/email-studio-workshop">Get Email Studio · $100 <span class="arr">→</span></a><a class="btn btn-ghost" href="#crew">Meet the crew</a></div>
+      <p class="note"><b>Claude Code plugin</b> · Claude app skills · a human approves every email</p>
+    </div>
+    <button class="replay fade f3" type="button" data-replay>↺ Replay the install</button>
   </div>
 </section>
 
@@ -268,7 +267,7 @@
 
 </main>
 
-<footer><div class="w"><span>Email Studio by Diego Garza · Emaily DFY · The Hall Of Templates</span><span>Figma, Emailify, Asana, ClickUp and Claude are trademarks of their owners. Not affiliated.</span></div></footer>
+<footer><div class="w"><span>Email Studio by Diego Garza · Emaily DFY · The Hall Of Templates</span><span><button class="replay sm" type="button" data-replay>↺ Replay the install</button> · Figma, Emailify, Asana, ClickUp and Claude are trademarks of their owners. Not affiliated.</span></div></footer>
 
 <script src="scene.js"></script>
 <script src="app.js"></script>

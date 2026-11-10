@@ -40,8 +40,18 @@
     var r = ESScene.paint(cv, { w: W, h: H, seed: seed });
     placeScreen(cv, document.getElementById(scrId), r);
   }
-  paintArt("hero-cv", "hero-screen", 7); paintArt("close-cv", "close-screen", 12);
-  var rz; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { paintArt("hero-cv", "hero-screen", 7); paintArt("close-cv", "close-screen", 12); }, 200); });
+  function paintHero() {
+    var hero = $("#hero"), cv = $("#hero-cv"), bw = hero.clientWidth, bh = hero.clientHeight, sky = $("#hero-sky");
+    var px = bw > 700 ? 4 : 3, W = Math.round(bw / px), H = Math.round(bh / px);
+    var horizon = (sky.offsetTop + sky.offsetHeight - (bw > 700 ? 44 : 30)) / bh;
+    var cw = Math.min(.46, (bw > 700 ? 230 : 150) / bw);
+    var r = ESScene.paint(cv, { w: W, h: H, seed: 7, horizon: horizon, cw: cw });
+    placeScreen(cv, $("#hero-screen"), r);
+  }
+  paintHero(); paintArt("close-cv", "close-screen", 12);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintHero);
+  var rz, lastW = innerWidth; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { if (Math.abs(innerWidth - lastW) < 2) return; lastW = innerWidth; paintHero(); paintArt("close-cv", "close-screen", 12); }, 200); });
+  $$("[data-replay]").forEach(function (b) { b.addEventListener("click", function () { try { sessionStorage.setItem("es-intro", "0"); } catch (e) {} location.href = location.pathname + "?intro"; }); });
   (async function heroScreen() {
     var rows = miniRows($("#hero-mini"));
     for (;;) { rows.forEach(function (r) { r.classList.remove("on"); }); await sleep(600); for (var i = 0; i < rows.length; i++) { rows[i].classList.add("on"); await sleep(420); } await sleep(2600); if (RM) return; }

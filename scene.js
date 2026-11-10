@@ -27,9 +27,9 @@
     var img = c.createImageData(W, H), d = img.data;
     var n1 = noise(seed), n2 = noise(seed + 11), n3 = noise(seed + 23);
     var portrait = H > W;
-    var horizon = portrait ? 0.56 : 0.6;
+    var horizon = o.horizon || (portrait ? 0.56 : 0.6);
     // computer geometry (units of W/H)
-    var cw = portrait ? 0.46 : 0.26, cx = 0.5 - cw / 2 + (portrait ? 0.02 : 0.03);
+    var cw = o.cw || (portrait ? 0.46 : 0.26), cx = 0.5 - cw / 2 + (portrait ? 0.02 : 0.03);
     function hillY0(x) { return horizon + 0.035 * Math.sin(x * 3.1 + 0.6) - 0.05 * (x - 0.5) + 0.015 * Math.sin(x * 9.7); }
     var bh = cw * 0.16 * W / H, hc = Math.min(hillY0(cx), hillY0(cx + cw));
     var base = { x: cx - cw * 0.12, y: hc + 0.018 - bh, w: cw * 1.12, h: bh };
