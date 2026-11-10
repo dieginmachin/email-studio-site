@@ -384,3 +384,16 @@ footer .w{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
 .replay.sm{padding:5px 10px;font-size:10px;background:none;backdrop-filter:none}
 .hero .fade.f3{transition-delay:.6s}
 @media (max-width:700px){.hero-sky{height:clamp(260px,44svh,400px)}.hbox{padding:24px 18px}.hero h1{font-size:clamp(46px,13vw,64px)}}
+
+/* v4 intro: plays on the hero itself, every visit */
+.intro{transition:background .5s}
+.intro.clear{background:transparent;pointer-events:none}
+.intro.clear .skip,.intro.clear .rt{pointer-events:auto}
+#scn{background:none;pointer-events:none}
+#scn canvas{display:none}
+.hbg{will-change:transform}
+body.intro-run .hbox,body.intro-run .hero .float,body.intro-run .hero .replay,body.intro-run .hero .cur{opacity:0!important;transform:translateY(24px)!important}
+body.intro-run #hero-screen{visibility:hidden}
+body.intro-run.revealed #hero-screen{visibility:visible}
+.hero .float,.hero .replay{transition:opacity .9s var(--ease) .5s,transform .9s var(--ease) .5s}
+body:not(.intro-run) .hero .float{opacity:1}

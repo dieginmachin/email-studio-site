@@ -51,92 +51,101 @@
   paintHero(); paintArt("close-cv", "close-screen", 12);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintHero);
   var rz, lastW = innerWidth; window.addEventListener("resize", function () { clearTimeout(rz); rz = setTimeout(function () { if (Math.abs(innerWidth - lastW) < 2) return; lastW = innerWidth; paintHero(); paintArt("close-cv", "close-screen", 12); }, 200); });
-  $$("[data-replay]").forEach(function (b) { b.addEventListener("click", function () { try { sessionStorage.setItem("es-intro", "0"); } catch (e) {} location.href = location.pathname + "?intro"; }); });
   (async function heroScreen() {
     var rows = miniRows($("#hero-mini"));
     for (;;) { rows.forEach(function (r) { r.classList.remove("on"); }); await sleep(600); for (var i = 0; i < rows.length; i++) { rows[i].classList.add("on"); await sleep(420); } await sleep(2600); if (RM) return; }
   })();
 
-  /* INTRO */
-  var intro = $("#intro"), hero = $("#hero"), nav = $("#nav"), done = false, skipped = false;
-  var forced = /[?&]intro/.test(location.search), noIntro = /[?&]nointro/.test(location.search);
-  var seen = false; try { seen = sessionStorage.getItem("es-intro") === "1"; } catch (e) {}
-  function finishIntro() {
-    if (done) return; done = true;
-    try { sessionStorage.setItem("es-intro", "1"); } catch (e) {}
-    intro.classList.add("gone"); document.body.classList.remove("locked"); nav.classList.remove("hide"); hero.classList.add("in");
+  /* INTRO: every visit. Loader, then the hero's own pixel scene dithers in, the camera dives into the computer,
+     the retro installer runs, and the camera pulls back out to the hero, which is the final frame. */
+  var intro = $("#intro"), hero = $("#hero"), nav = $("#nav"), hbg = $(".hbg"), hcv = $("#hero-cv"), rt = $("#rt");
+  var noIntro = /[?&]nointro/.test(location.search), run = 0, PAPER = [244, 241, 234];
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  function settle() {
+    hbg.style.transform = ""; ESScene.reveal(hcv, 1.01, PAPER);
+    intro.classList.add("gone"); intro.classList.remove("clear");
+    document.body.classList.remove("locked", "intro-run", "revealed"); nav.classList.remove("hide");
+    requestAnimationFrame(function () { hero.classList.add("in"); });
   }
-  async function openTo(x, y) {
-    hero.classList.add("in");
-    intro.style.setProperty("--mx", x + "px"); intro.style.setProperty("--my", y + "px"); intro.classList.add("opening");
-    var R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 20;
-    await tween(RM ? 1 : 950, function (t) { intro.style.setProperty("--r", (t * R).toFixed(1) + "px"); }, function (t) { return t * t * t; });
-    finishIntro();
+  function skip() { run++; settle(); }
+  $("#skip").addEventListener("click", skip);
+  window.addEventListener("keydown", function (e) { if (document.body.classList.contains("intro-run") && (e.key === "Escape" || e.key === "Enter")) skip(); });
+  $$("[data-replay]").forEach(function (b) { b.addEventListener("click", function () { scrollTo(0, 0); startIntro(); }); });
+  function screenGeo() {
+    var bw = hero.clientWidth, bh = hero.clientHeight, sc = $("#hero-screen");
+    var x = sc.offsetLeft + sc.offsetWidth / 2, y = sc.offsetTop + sc.offsetHeight / 2;
+    var S = Math.max(innerWidth / sc.offsetWidth, innerHeight / sc.offsetHeight) * 1.22;
+    return { x: x, y: y, S: S, dx: innerWidth / 2 - x, dy: innerHeight / 2 - y };
   }
-  $("#skip").addEventListener("click", function () { skipped = true; openTo(innerWidth / 2, innerHeight / 2); });
-  window.addEventListener("keydown", function (e) { if (!done && (e.key === "Escape" || e.key === "Enter")) { skipped = true; openTo(innerWidth / 2, innerHeight / 2); } });
+  function zoom(g, t) { hbg.style.transformOrigin = g.x + "px " + g.y + "px"; hbg.style.transform = "translate(" + (g.dx * t).toFixed(1) + "px," + (g.dy * t).toFixed(1) + "px) scale(" + (1 + (g.S - 1) * t).toFixed(4) + ")"; }
 
-  async function runIntro() {
-    nav.classList.add("hide");
+  async function startIntro() {
+    var my = ++run, alive = function () { return my === run; };
+    scrollTo(0, 0);
+    hero.classList.remove("in"); nav.classList.add("hide");
+    document.body.classList.add("locked", "intro-run"); document.body.classList.remove("revealed");
+    intro.classList.remove("gone", "clear"); $("#ld").style.opacity = 1; hbg.style.transform = "";
+    rt.hidden = true; rt.classList.remove("on");
+    ESScene.reveal(hcv, 0, PAPER);
     /* 1. loader: the studio running, plays once, ends exactly */
     var track = $("#ld-track"), chip = $("#ld-chip"), kinds = ["sorter", "librarian", "maker", "reviewer", "you"], xs = [6, 28, 50, 72, 94];
-    kinds.forEach(function (k, i) { var b = document.createElement("span"); b.innerHTML = bot(k, .78); b = b.firstChild; b.style.left = "calc(" + xs[i] + "% - 16px)"; track.appendChild(b); });
+    $$(".bot", track).forEach(function (b) { b.remove(); });
+    kinds.forEach(function (k, i) { var w = document.createElement("span"); w.innerHTML = bot(k, .78); var b = w.firstChild; b.style.left = "calc(" + xs[i] + "% - 25px)"; track.appendChild(b); });
     var bots = $$(".bot", track), bar = $("#ld-bar"), num = $("#ld-n");
-    chip.style.left = "calc(" + xs[0] + "% - 13px)";
+    chip.classList.remove("ok"); chip.style.left = "calc(" + xs[0] + "% - 15px)";
     var LD = 2400;
-    tween(LD, function (t) { bar.style.transform = "scaleX(" + t + ")"; num.textContent = "stage " + String(Math.min(9, 1 + Math.floor(t * 9))).padStart(2, "0") + " / 09"; }, function (t) { return t; });
-    for (var i = 0; i < 5; i++) { if (skipped) return; chip.style.left = "calc(" + xs[i] + "% - 13px)"; bots[i].classList.add("hit"); await sleep(LD / 5 - 30); bots[i].classList.remove("hit"); }
-    chip.classList.add("ok"); num.textContent = "ready"; await sleep(260);
-    if (skipped) return;
-    /* 2. pixel scene, dithered in */
-    var scn = $("#scn"), cv = $("#scn-cv"), px = innerWidth > 700 ? 4 : 3;
-    scn.hidden = false;
-    var scr = ESScene.paint(cv, { w: Math.round(innerWidth / px), h: Math.round(innerHeight / px), seed: 7 });
-    var cap = $("#scn-cap"); cap.style.opacity = 0;
-    $("#ld").style.opacity = 0;
-    await tween(700, function (t) { ESScene.reveal(cv, t, [244, 241, 234]); }, function (t) { return t; });
-    ESScene.reveal(cv, 1.01, [0, 0, 0]);
-    cap.style.opacity = 1; await sleep(1200); if (skipped) return;
-    /* 3. zoom into the screen */
+    tween(LD, function (t) { if (!alive()) return; bar.style.transform = "scaleX(" + t + ")"; num.textContent = "stage " + String(Math.min(9, 1 + Math.floor(t * 9))).padStart(2, "0") + " / 09"; }, function (t) { return t; });
+    for (var i = 0; i < 5; i++) { chip.style.left = "calc(" + xs[i] + "% - 15px)"; bots[i].classList.add("hit"); await sleep(LD / 5 - 30); bots[i].classList.remove("hit"); if (!alive()) return; }
+    chip.classList.add("ok"); num.textContent = "ready"; await sleep(260); if (!alive()) return;
+    /* 2. the hero's pixel scene dithers in, with the caption */
+    $("#ld").style.opacity = 0; intro.classList.add("clear");
+    await tween(800, function (t) { if (alive()) ESScene.reveal(hcv, t, PAPER); }, function (t) { return t; });
+    if (!alive()) return;
+    ESScene.reveal(hcv, 1.01, PAPER); document.body.classList.add("revealed");
+    var cap = $("#scn-cap"); $("#scn").hidden = false; cap.style.opacity = 1;
+    await sleep(1500); if (!alive()) return;
+    /* 3. dive into the computer */
     cap.style.opacity = 0;
-    var cx = scr.x + scr.w / 2, cy = scr.y + scr.h / 2;
-    scn.style.setProperty("--ox", cx * 100 + "%"); scn.style.setProperty("--oy", cy * 100 + "%");
-    var S = Math.max(1 / scr.w, 1 / scr.h) * 1.25, rt = $("#rt"); rt.hidden = false;
-    await tween(1600, function (t) { scn.style.transform = "scale(" + (1 + (S - 1) * t) + ")"; if (t > .62) rt.classList.add("on"); });
-    if (skipped) return;
-    scn.hidden = true;
+    var g = screenGeo(); rt.hidden = false;
+    await tween(1600, function (t) { if (!alive()) return; zoom(g, t); if (t > .66) rt.classList.add("on"); });
+    if (!alive()) return;
     /* 4. retro installer with a live feed */
     var steps = [["sorter", "01 intake"], ["librarian", "02 brand"], ["librarian", "03 library"], ["reviewer", "04 layers"], ["librarian", "05 atomic"], ["maker", "06 match + remix"], ["maker", "07 build"], ["reviewer", "08 review"], ["lead", "09 run"]];
     var feed = [["sorter", "6 briefs sorted <em>· 1 missing link</em>"], ["librarian", "BRAND.md <em>· 6 colours, 2 type families</em>"], ["librarian", "library <em>· 43 sends digested</em>"], ["reviewer", "layers <em>· 2 renamed on your yes</em>"], ["librarian", "atomic <em>· dry run read</em>"], ["maker", "precedent <em>· Weekend edit, Oct</em>"], ["maker", "rebuilt <em>· 7 rows, 0 new</em>"], ["reviewer", "verdict <em>· Ready</em>"], ["lead", "week <em>· 5 ready, 1 waiting</em>"]];
     var sEl = $("#rt-steps"), log = $("#rt-log"), prog = $("#rt-prog"), pct = $("#rt-pct"), mini = miniRows($("#rt-mini"));
+    log.innerHTML = ""; pct.textContent = "0%"; $("#rt-status").textContent = "Copying 19 skills…";
     sEl.innerHTML = steps.map(function (s) { return '<div class="rstep"><span class="bx">[ ]</span>' + s[1] + " · " + s[0] + "</div>"; }).join("");
-    prog.innerHTML = new Array(24).join("<i></i>") + "<i></i>";
-    var lines = $$(".rstep", sEl), blocks = $$("i", prog);
+    prog.innerHTML = new Array(25).join("<i></i>");
+    var lines = $$(".rstep", sEl), blocks = $$("i", prog), btn = $("#rt-open"), cur = $("#rt-cur");
+    btn.classList.remove("ready", "press"); cur.style.transition = "none"; cur.style.transform = "translate(" + (innerWidth + 40) + "px," + (innerHeight + 40) + "px)";
     for (var k = 0; k < steps.length; k++) {
-      if (skipped) return;
       lines[k].classList.add("go"); $(".bx", lines[k]).textContent = "[>]";
-      await sleep(170);
+      await sleep(180); if (!alive()) return;
       lines[k].classList.replace("go", "ok"); $(".bx", lines[k]).textContent = "[x]";
       var d = document.createElement("div"); d.innerHTML = bot(feed[k][0], .24) + "<span>" + feed[k][1] + "</span>"; log.appendChild(d);
       if (mini[Math.min(k, mini.length - 1)]) mini[Math.min(k, mini.length - 1)].classList.add("on");
       var p = Math.round((k + 1) / steps.length * 100); pct.textContent = p + "%";
       blocks.forEach(function (b, j) { if (j < Math.round(p / 100 * blocks.length)) b.classList.add("on"); });
-      await sleep(150);
+      await sleep(160); if (!alive()) return;
     }
     $("#rt-status").textContent = "Installed. 19 skills, 5 agents.";
-    var btn = $("#rt-open"); btn.classList.add("ready");
-    var cur = $("#rt-cur"), br = btn.getBoundingClientRect();
-    cur.style.transform = "translate(" + (innerWidth - 60) + "px," + (innerHeight - 40) + "px)";
-    await sleep(60);
+    btn.classList.add("ready");
+    var br = btn.getBoundingClientRect();
+    await sleep(80);
     cur.style.transition = "transform .8s cubic-bezier(.2,.7,.1,1)";
     cur.style.transform = "translate(" + (br.left + br.width * .6) + "px," + (br.top + br.height * .45) + "px)";
-    await sleep(900); if (skipped) return;
-    btn.classList.add("press"); await sleep(220);
-    /* 5. open into the hero */
-    await openTo(br.left + br.width / 2, br.top + br.height / 2);
+    await sleep(950); if (!alive()) return;
+    btn.classList.add("press"); await sleep(240); if (!alive()) return;
+    /* 5. pull back out: the hero is the final frame */
+    rt.classList.remove("on");
+    await sleep(380); if (!alive()) return;
+    rt.hidden = true;
+    await tween(1500, function (t) { if (alive()) zoom(g, 1 - t); });
+    if (!alive()) return;
+    settle();
   }
-  if (RM || noIntro || (seen && !forced)) finishIntro();
-  else runIntro().catch(function () { finishIntro(); });
+  if (RM || noIntro) settle();
+  else startIntro().catch(function () { settle(); });
 
   /* LIVE studio loop */
   (function live() {
@@ -245,4 +254,17 @@
     await type("/email-studio:new-brand Fernhill");
     it.insertAdjacentHTML("beforeend", '\n<span class="c">  sorter, librarian: on it</span>\n<span class="p">›</span> <span class="caret"></span>');
   }, { threshold: .4 }).observe(it);
+})();
+/* Immersive scroll for the hero: the scene drifts slower than the page and the computer recedes. */
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var hbg = document.querySelector(".hbg"), hero = document.getElementById("hero"), tk = false;
+  function f() {
+    tk = false;
+    if (document.body.classList.contains("intro-run")) return;
+    var y = Math.min(scrollY, hero.offsetHeight), k = y / hero.offsetHeight;
+    hbg.style.transformOrigin = "50% 30%";
+    hbg.style.transform = "translateY(" + (y * 0.38).toFixed(1) + "px) scale(" + (1 + k * 0.08).toFixed(4) + ")";
+  }
+  addEventListener("scroll", function () { if (!tk) { tk = true; requestAnimationFrame(f); } }, { passive: true });
 })();
