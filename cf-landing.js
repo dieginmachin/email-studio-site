@@ -11,7 +11,7 @@
     });
     // ClickFunnels' checkout ships "Submit" / "Rush My Order!" (hidden multi-step variants): one label for all of them.
     function relabel() {
-      document.querySelectorAll("#pay .elButtonMainText").forEach(function (t) { if (t.textContent !== "Claim your spot") t.textContent = "Claim your spot"; });
+      document.querySelectorAll("#pay .elButtonMainText").forEach(function (t) { if (/^(Submit|Rush My Order!)$/.test(t.textContent.trim())) t.textContent = "Claim your spot"; });
     }
     relabel();
     var pay = document.getElementById("pay");
