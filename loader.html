@@ -1,82 +1,10 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Email Studio · running</title>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="dfy-mark.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Instrument+Serif:ital@0;1&family=Space+Mono&display=swap">
-<link rel="stylesheet" href="style.css">
-<style>
-/* Minimal loader: one email walks past the five agents to you, once. It ends on its last frame and stays there. */
-body{min-height:100svh;display:grid;place-items:center}
-.L{width:min(640px,90vw);display:grid;gap:34px;justify-items:center;text-align:center}
-.L h1{font-size:clamp(40px,6vw,64px);line-height:1;min-height:2.05em;display:grid;align-items:end}
-.L h1 em{font-style:italic}
-.row{position:relative;width:100%;height:120px}
-.row .rail{position:absolute;left:5%;right:5%;top:58px;border-top:1.5px dashed var(--dot)}
-.row .rail i{position:absolute;left:0;top:-1.5px;height:1.5px;width:100%;background:var(--ink);transform-origin:left;transform:scaleX(0)}
-.st{position:absolute;top:40px;width:80px;margin-left:-40px;display:grid;justify-items:center;gap:12px}
-.st .bot{animation:none;transition:transform .45s var(--spring)}
-.st.hit .bot{transform:translateY(-8px) scale(1.1)}
-.st span{font:400 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute);transition:color .3s}
-.st.hit span,.st.done span{color:var(--ink)}
-.mail{position:absolute;top:0;width:34px;height:26px;margin-left:-17px;border-radius:5px;background:#fff;border:1.5px solid var(--ink);transition:left .55s cubic-bezier(.2,.7,.1,1),background .3s}
-.mail::before,.mail::after{content:"";position:absolute;left:5px;right:5px;height:2.5px;border-radius:2px;background:var(--ink);top:7px}
-.mail::after{top:14px;right:12px;background:var(--mute)}
-.mail.ok{background:var(--lime)}
-.meta{display:flex;justify-content:space-between;width:100%;font:400 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
-.line{width:100%;height:2px;background:var(--line)}.line i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(0)}
-.again{appearance:none;border:0;background:none;font:400 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);cursor:pointer;opacity:0;transition:opacity .5s}
-.again.on{opacity:1}
-</style>
-</head>
-<body class="dots">
-<main class="L" aria-live="polite">
-  <h1 id="say">The studio is running.</h1>
-  <div class="row" id="row"><span class="rail"><i id="rail"></i></span><span class="mail" id="mail"></span></div>
-  <div class="line"><i id="bar"></i></div>
-  <div class="meta"><span>email studio</span><span id="n">stage 01 / 09</span></div>
-  <button class="again" id="again" type="button">Play again</button>
-</main>
-<script>
-(function () {
-  "use strict";
-  var RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var A = [["sorter", "sorting"], ["librarian", "remembering"], ["maker", "rebuilding"], ["reviewer", "checking"], ["you", "your yes"]];
-  var X = [8, 29, 50, 71, 92], row = document.getElementById("row"), mail = document.getElementById("mail");
-  var say = document.getElementById("say"), n = document.getElementById("n"), bar = document.getElementById("bar"), rail = document.getElementById("rail"), again = document.getElementById("again");
-  var lines = ["The studio is running.", "Reading the board.", "Remembering what they loved.", "Rebuilding from approved rows.", "Checking the evidence.", "Ready for <em>your yes.</em>"];
-  var sts = A.map(function (a, i) {
-    var d = document.createElement("div"); d.className = "st"; d.style.left = X[i] + "%";
-    d.innerHTML = '<span class="bot ' + a[0] + '" style="--s:.62"><i class="eye"></i><i class="eye"></i></span><span>' + a[1] + "</span>";
-    row.appendChild(d); return d;
-  });
-  var STEP = 900, TOTAL = STEP * 5; // the run lasts exactly 4.5 s, then it stops on its last frame
-  function play() {
-    again.classList.remove("on"); mail.classList.remove("ok"); sts.forEach(function (s) { s.classList.remove("hit", "done"); });
-    say.innerHTML = lines[0]; mail.style.left = X[0] + "%";
-    var t0 = performance.now();
-    (function f(now) {
-      var t = Math.min(1, (now - t0) / TOTAL);
-      bar.style.transform = "scaleX(" + t + ")"; rail.style.transform = "scaleX(" + t + ")";
-      n.textContent = t < 1 ? "stage " + String(1 + Math.floor(t * 9)).padStart(2, "0") + " / 09" : "done";
-      var k = Math.min(4, Math.floor(t * 5));
-      if (sts[k] && !sts[k].classList.contains("hit") && t < 1) {
-        sts.forEach(function (s, j) { s.classList.toggle("hit", j === k); if (j < k) s.classList.add("done"); });
-        mail.style.left = X[k] + "%"; say.innerHTML = lines[k + 1 <= 4 ? k + 1 : 4];
-      }
-      if (t < 1) requestAnimationFrame(f);
-      else { sts.forEach(function (s) { s.classList.remove("hit"); s.classList.add("done"); }); mail.classList.add("ok"); say.innerHTML = lines[5]; again.classList.add("on"); }
-    })(t0);
-  }
-  if (RM) { bar.style.transform = rail.style.transform = "scaleX(1)"; mail.style.left = X[4] + "%"; mail.classList.add("ok"); say.innerHTML = lines[5]; n.textContent = "done"; sts.forEach(function (s) { s.classList.add("done"); }); }
-  else play();
-  again.addEventListener("click", play);
-})();
-</script>
-</body>
-</html>
+<title>Email Studio Of One</title>
+<link rel="canonical" href="https://www.halloftemplates.com/studio-founding">
+<meta http-equiv="refresh" content="0; url=https://www.halloftemplates.com/studio-founding">
+<script>location.replace("https://www.halloftemplates.com/studio-founding" + location.hash);</script>
+<style>body{font:16px/1.5 system-ui,sans-serif;background:#F4F1EA;color:#121110;display:grid;place-items:center;min-height:100vh;margin:0}a{color:#17904f}</style>
+</head><body><p>Email Studio Of One lives here now: <a href="https://www.halloftemplates.com/studio-founding">www.halloftemplates.com/studio-founding</a></p></body></html>
